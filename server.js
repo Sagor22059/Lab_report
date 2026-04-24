@@ -42,4 +42,4 @@ app.get('/about', (req, res) => res.render('public/about'));
 app.use((req, res) => res.status(404).render('public/404'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));s
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

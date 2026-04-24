@@ -1,7 +1,57 @@
 <%- include('../partials/header', { title: 'Home' }) %>
+
+<!-- Hero Section -->
 <div class="jumbotron text-center">
-    <h1 class="display-4">Online Lab Report Submission System</h1>
-    <p class="lead">Submit reports, get feedback, track your progress.</p>
-    <a href="/register" class="btn btn-primary btn-lg">Get Started</a>
+    <h1 class="display-4">🔬 Online Lab Report System</h1>
+    <p class="lead">A modern platform for submitting lab reports, receiving feedback, and tracking your progress.</p>
+    <% if(!user) { %>
+        <a href="/register" class="btn btn-primary btn-lg me-2">Get Started</a>
+        <a href="/login" class="btn btn-outline-primary btn-lg">Login</a>
+    <% } %>
 </div>
+
+<!-- Features Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-5">Why Choose Our System?</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">📤 Easy Submission</h4>
+                    <p class="card-text">Upload your lab reports quickly and securely. Get confirmation of submission instantly.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">✅ Fast Feedback</h4>
+                    <p class="card-text">Receive detailed feedback from your instructors on your submissions in a timely manner.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">📊 Progress Tracking</h4>
+                    <p class="card-text">Monitor your grades and track your progress throughout the semester effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h3>Ready to get started?</h3>
+        <p class="mb-4">Join thousands of students already using our system.</p>
+        <% if(!user) { %>
+            <a href="/register" class="btn btn-primary btn-lg">Create an Account</a>
+        <% } else { %>
+            <a href="/<%= user.role %>/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+        <% } %>
+    </div>
+</div>
+
 <%- include('../partials/footer') %>

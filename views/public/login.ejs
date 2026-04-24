@@ -1,22 +1,57 @@
 <%- include('../partials/header', { title: 'Login' }) %>
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <h2>Login</h2>
-        <% if(error) { %>
-            <div class="alert alert-danger"><%= error %></div>
-        <% } %>
-        <form method="POST">
-            <div class="mb-3">
-                <label>Email</label>
-                <input type="email" name="email" class="form-control" required>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login</h2>
+                    
+                    <% if(error) { %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Login Failed:</strong> <%= error %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <% } %>
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required autofocus>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" id="remember" name="remember" class="form-check-input">
+                            <label for="remember" class="form-check-label">Remember me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                        
+                        <div class="text-center">
+                            <p class="mb-0">Don't have an account? 
+                                <a href="/register" class="text-primary fw-bold">Register here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required>
+
+            <!-- Demo Credentials Info -->
+            <div class="alert alert-info mt-4">
+                <h6>Demo Credentials:</h6>
+                <small>
+                    <p class="mb-1"><strong>Student:</strong> student@example.com / password123</p>
+                    <p class="mb-1"><strong>Teacher:</strong> teacher@example.com / password123</p>
+                    <p class="mb-0"><strong>Admin:</strong> admin@example.com / password123</p>
+                </small>
             </div>
-            <button class="btn btn-primary">Login</button>
-            <a href="/register" class="btn btn-link">Register</a>
-        </form>
+        </div>
     </div>
 </div>
+
 <%- include('../partials/footer') %>

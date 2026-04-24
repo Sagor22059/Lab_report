@@ -1,33 +1,64 @@
 <%- include('../partials/header', { title: 'Register' }) %>
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <h2>Register</h2>
-        <% if(error) { %>
-            <div class="alert alert-danger"><%= error %></div>
-        <% } %>
-        <form method="POST">
-            <div class="mb-3">
-                <label>Full Name</label>
-                <input type="text" name="name" class="form-control" required>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Create Account</h2>
+                    
+                    <% if(error) { %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Registration Error:</strong> <%= error %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <% } %>
+
+                    <form method="POST" id="registerForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+                            <small class="form-text text-muted">Enter your full name</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+                            <small class="form-text text-muted">We'll never share your email with anyone else</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="At least 6 characters" required minlength="6">
+                            <small class="form-text text-muted">Password must be at least 6 characters long</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Account Type</label>
+                            <select id="role" name="role" class="form-control" required>
+                                <option value="">-- Select Account Type --</option>
+                                <option value="student">👨‍🎓 Student</option>
+                                <option value="teacher">👨‍🏫 Teacher/Instructor</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-2">Create Account</button>
+                        <a href="/login" class="btn btn-outline-secondary w-100">Already have an account? Login</a>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label>Email</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Role</label>
-                <select name="role" class="form-control">
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                </select>
-            </div>
-            <button class="btn btn-primary">Register</button>
-            <a href="/login" class="btn btn-link">Already have an account?</a>
-        </form>
+        </div>
     </div>
 </div>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    const password = document.getElementById('password').value;
+    if (password.length < 6) {
+        e.preventDefault();
+        alert('Password must be at least 6 characters long');
+    }
+});
+</script>
+
 <%- include('../partials/footer') %>
