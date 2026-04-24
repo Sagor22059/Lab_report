@@ -1,0 +1,17 @@
+<%- include('../partials/header', { title: 'Grade Submission' }) %>
+<h2>Grade Submission</h2>
+<p><strong>Student:</strong> <%= submission.student_name %></p>
+<p><strong>Assignment:</strong> <%= submission.assignment_title %></p>
+<p><strong>File:</strong> <a href="/<%= submission.file_path %>" target="_blank">Download</a></p>
+<form method="POST">
+    <div class="mb-3">
+        <label>Marks (0-100)</label>
+        <input type="number" name="marks" step="0.01" class="form-control" value="<%= submission.marks || '' %>" required>
+    </div>
+    <div class="mb-3">
+        <label>Feedback</label>
+        <textarea name="feedback" class="form-control" rows="3"><%= submission.feedback || '' %></textarea>
+    </div>
+    <button class="btn btn-primary">Save Grade</button>
+</form>
+<%- include('../partials/footer') %>

@@ -1,0 +1,21 @@
+<%- include('../partials/header', { title: 'Upload Report' }) %>
+<h2>Upload Lab Report</h2>
+<% if(error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label>Select Assignment</label>
+        <select name="assignment_id" class="form-control" required>
+            <% assignments.forEach(ass => { %>
+                <option value="<%= ass.id %>"><%= ass.title %> - <%= ass.course_name %> (Due: <%= new Date(ass.deadline).toLocaleString() %>)</option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Upload File (PDF, DOC, DOCX)</label>
+        <input type="file" name="report" class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>
+<%- include('../partials/footer') %>

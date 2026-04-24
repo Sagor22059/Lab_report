@@ -1,0 +1,34 @@
+<%- include('../partials/header', { title: 'Student Dashboard' }) %>
+<h2>Welcome, <%= user.name %></h2>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Upcoming Assignments</h3>
+        <% if(assignments.length) { %>
+            <ul class="list-group">
+                <% assignments.forEach(ass => { %>
+                    <li class="list-group-item">
+                        <strong><%= ass.title %></strong> (<%= ass.course_name %>)<br>
+                        Deadline: <%= new Date(ass.deadline).toLocaleString() %>
+                        <a href="/student/upload" class="btn btn-sm btn-primary float-end">Submit</a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %><p>No upcoming assignments.</p><% } %>
+    </div>
+    <div class="col-md-6">
+        <h3>Recent Submissions</h3>
+        <% if(submissions.length) { %>
+            <table class="table table-bordered">
+                <tr><th>Assignment</th><th>Status</th><th>Marks</th></tr>
+                <% submissions.forEach(sub => { %>
+                    <tr>
+                        <td><%= sub.title %></td>
+                        <td><%= sub.status %></td>
+                        <td><%= sub.marks || 'Not graded' %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        <% } else { %><p>No submissions yet.</p><% } %>
+    </div>
+</div>
+<%- include('../partials/footer') %>

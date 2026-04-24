@@ -1,0 +1,10 @@
+<%- include('../partials/header', { title: 'Admin Dashboard' }) %>
+<h2>Admin Dashboard</h2>
+<div class="row">
+    <div class="col-md-4"><div class="card"><div class="card-body"><h5>Total Users</h5><h3><%= userCount %></h3></div></div></div>
+    <div class="col-md-4"><div class="card"><div class="card-body"><h5>Submissions</h5><h3><%= submissionCount %></h3></div></div></div>
+</div>
+<hr>
+<a href="/admin/users" class="btn btn-primary">Manage Users</a>
+<a href="/admin/courses" class="btn btn-secondary">Manage Courses</a>
+<%- include('../partials/footer') %>

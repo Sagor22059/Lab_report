@@ -1,0 +1,30 @@
+<%- include('../partials/header', { title: 'Manage Users' }) %>
+<h2>All Users</h2>
+<form method="POST" class="mb-4">
+    <div class="row">
+        <div class="col"><input type="text" name="name" placeholder="Name" class="form-control" required></div>
+        <div class="col"><input type="email" name="email" placeholder="Email" class="form-control" required></div>
+        <div class="col"><input type="password" name="password" placeholder="Password" class="form-control" required></div>
+        <div class="col">
+            <select name="role" class="form-control">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <div class="col"><button class="btn btn-success">Add User</button></div>
+    </div>
+</form>
+<table class="table">
+    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Created</th><th>Action</th></tr></thead>
+    <tbody>
+        <% users.forEach(u => { %>
+            <tr>
+                <td><%= u.id %></td><td><%= u.name %></td><td><%= u.email %></td>
+                <td><%= u.role %></td><td><%= new Date(u.created_at).toLocaleDateString() %></td>
+                <td><a href="/admin/users/delete/<%= u.id %>" onclick="return confirm('Delete?')" class="btn btn-sm btn-danger">Delete</a></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<%- include('../partials/footer') %>

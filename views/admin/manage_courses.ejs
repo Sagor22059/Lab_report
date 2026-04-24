@@ -1,0 +1,25 @@
+<%- include('../partials/header', { title: 'Manage Courses' }) %>
+<h2>Courses</h2>
+<form method="POST" class="mb-4">
+    <div class="row">
+        <div class="col"><input type="text" name="course_name" placeholder="Course Name" class="form-control" required></div>
+        <div class="col">
+            <select name="teacher_id" class="form-control" required>
+                <option value="">Select Teacher</option>
+                <% teachers.forEach(t => { %>
+                    <option value="<%= t.id %>"><%= t.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="col"><button class="btn btn-success">Add Course</button></div>
+    </div>
+</form>
+<table class="table">
+    <thead><tr><th>Course</th><th>Teacher</th></tr></thead>
+    <tbody>
+        <% courses.forEach(c => { %>
+            <tr><td><%= c.course_name %></td><td><%= c.teacher_name %></td></tr>
+        <% }) %>
+    </tbody>
+</table>
+<%- include('../partials/footer') %>

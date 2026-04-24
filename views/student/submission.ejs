@@ -1,0 +1,19 @@
+<%- include('../partials/header', { title: 'My Submissions' }) %>
+<h2>My Submissions</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Assignment</th><th>Submission Date</th><th>Status</th><th>Marks</th><th>Feedback</th></tr>
+    </thead>
+    <tbody>
+        <% submissions.forEach(sub => { %>
+            <tr>
+                <td><%= sub.title %></td>
+                <td><%= new Date(sub.submission_date).toLocaleString() %></td>
+                <td><%= sub.status %></td>
+                <td><%= sub.marks || '-' %></td>
+                <td><%= sub.feedback || '-' %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<%- include('../partials/footer') %>

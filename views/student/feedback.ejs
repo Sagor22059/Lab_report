@@ -1,0 +1,15 @@
+<%- include('../partials/header', { title: 'Feedback' }) %>
+<h2>My Feedback</h2>
+<% if(feedback.length) { %>
+    <ul class="list-group">
+        <% feedback.forEach(fb => { %>
+            <li class="list-group-item">
+                <strong><%= fb.title %></strong><br>
+                Marks: <%= fb.marks %><br>
+                Feedback: <%= fb.feedback %><br>
+                Graded on: <%= new Date(fb.graded_at).toLocaleString() %>
+            </li>
+        <% }) %>
+    </ul>
+<% } else { %><p>No feedback yet.</p><% } %>
+<%- include('../partials/footer') %>

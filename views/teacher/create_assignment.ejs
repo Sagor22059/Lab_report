@@ -1,0 +1,27 @@
+<%- include('../partials/header', { title: 'Create Assignment' }) %>
+<h2>Create New Assignment</h2>
+<% if(error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+<form method="POST">
+    <div class="mb-3">
+        <label>Course</label>
+        <select name="course_id" class="form-control" required>
+            <% courses.forEach(c => { %>
+                <option value="<%= c.id %>"><%= c.course_name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Title</label>
+        <input type="text" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Deadline (YYYY-MM-DD HH:MM:SS)</label>
+        <input type="datetime-local" name="deadline" class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Create</button>
+</form>
+<%- include('../partials/footer') %>
